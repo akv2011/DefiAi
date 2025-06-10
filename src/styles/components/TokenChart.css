@@ -1,0 +1,36 @@
+.token-chart-container {
+  width: 100%;
+  background: #131722;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.interval-selector {
+  display: flex;
+  gap: 4px;
+  padding: 8px;
+  background: #1e222d;
+}
+
+.interval-button {
+  padding: 4px 8px;
+  border: none;
+  background: transparent;
+  color: #787b86;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.interval-button:hover {
+  background: #2a2e39;
+}
+
+.interval-button.active {
+  background: #2962ff;
+  color: white;
+}
+
+.tradingview-chart {
+  width: 100%;
+  border-radius: 0 0 8px 8px;
+} 
