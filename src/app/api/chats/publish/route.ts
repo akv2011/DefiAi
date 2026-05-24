@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 
-import { google } from "@ai-sdk/google";
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { generateText } from "ai";
+
+const openrouter = createOpenRouter({ apiKey: process.env.OPENROUTER_API_KEY });
 
 import { createClient } from "@/lib/supabaseClient";
 
@@ -77,7 +79,7 @@ export async function POST(request: Request) {
       ) {
         try {
           const { text: summaryText } = await generateText({
-            model: google("gemini-1.5-flash"),
+            model: openrouter("google/gemini-1.5-flash"),
             prompt: `Generate a concise, engaging summary (max 80 words, ideally 1-3 short sentences) for a chat titled \"${chatLabel}\". The chat content starts with: \"${contentToSummarizeForLLM.slice(
               0,
               600

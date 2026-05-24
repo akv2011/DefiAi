@@ -2,9 +2,12 @@ import { NextResponse } from "next/server";
 
 //import { anthropic } from "@ai-sdk/anthropic";
 //import { deepseek } from "@ai-sdk/deepseek";
-import { google } from "@ai-sdk/google";
-import { xai } from "@ai-sdk/xai";
+//import { google } from "@ai-sdk/google";
+//import { xai } from "@ai-sdk/xai";
 //import { openai } from "@ai-sdk/openai";
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+
+const openrouter = createOpenRouter({ apiKey: process.env.OPENROUTER_API_KEY });
 import { EVM, createConfig } from "@lifi/sdk";
 import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import {
@@ -211,7 +214,7 @@ async function generateConversationTitle(
       return titleCache.get(cacheKey)!;
     }
     const { text: title } = await generateText({
-      model: google("gemini-2.0-flash-001"),
+      model: openrouter("google/gemini-2.0-flash-001"),
       system: `Generate a concise 4-8 word title for this user request. Focus on the main action, asset, or topic. Examples: "Check ETH Balance", "Swap USDC to WETH", "Bitcoin Price Analysis", "Ionic Lend Position". Respond ONLY with the title text, no quotes or punctuation.`,
       messages: [
         {
@@ -470,37 +473,43 @@ export async function POST(req: Request) {
 
     let mcpClient: MCPClient | undefined;
     let matrixMcpTools = {};
-    try {
-      mcpClient = await createMCPClient({
-        transport: {
-          type: "sse",
-          url: process.env.MATRIX_MCP_URL || "",
-          headers: {
-            Authorization: `Bearer ${process.env.MATRIX_MCP_API_KEY}`,
-            "x-api-key": process.env.MATRIX_MCP_API_KEY || "",
+    if (process.env.MATRIX_MCP_URL) {
+      try {
+        mcpClient = await createMCPClient({
+          transport: {
+            type: "sse",
+            url: process.env.MATRIX_MCP_URL,
+            headers: {
+              Authorization: `Bearer ${process.env.MATRIX_MCP_API_KEY ?? ""}`,
+              "x-api-key": process.env.MATRIX_MCP_API_KEY ?? "",
+            },
           },
-        },
-      });
-      matrixMcpTools = await mcpClient.tools();
+        });
+        matrixMcpTools = await mcpClient.tools();
+        console.log(
+          `[${requestId}] Matrix MCP Tools loaded:`,
+          Object.keys(matrixMcpTools)
+        );
+      } catch (mcpError) {
+        console.error(
+          `[${requestId}] Failed to initialize Matrix MCP Client or load tools:`,
+          mcpError
+        );
+      }
+    } else {
       console.log(
-        `[${requestId}] Matrix MCP Tools loaded:`,
-        Object.keys(matrixMcpTools)
-      );
-    } catch (mcpError) {
-      console.error(
-        `[${requestId}] Failed to initialize Matrix MCP Client or load tools:`,
-        mcpError
+        `[${requestId}] MATRIX_MCP_URL not set — skipping MCP tool registration.`
       );
     }
 
     const streamConfig = {
       //model: deepseek("deepseek-chat"),
       //model: anthropic("claude-3-5-sonnet-latest"),
-      model: xai("grok-3-fast"), // Using flash version
-      //model: google('gemini-1.5-pro-latest'),
-      //model: anthropic("claude-3-haiku-20240307"),
-      //model: google("gemini-1.5-flash-latest"),
-      //model: openai.chat("gpt-4o"),
+      model: openrouter("x-ai/grok-3-fast"), // Using flash version via OpenRouter
+      //model: openrouter('google/gemini-1.5-pro'),
+      //model: openrouter("anthropic/claude-3-haiku"),
+      //model: openrouter("google/gemini-1.5-flash"),
+      //model: openrouter("openai/gpt-4o"),
       messages: messagesToSendToModel,
       tools: {
         ...matrixMcpTools, // Include MCP tools safely

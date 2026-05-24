@@ -1,5 +1,7 @@
 // src/lib/morpheusSearch.ts
-import { google } from "@ai-sdk/google";
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+
+const openrouter = createOpenRouter({ apiKey: process.env.OPENROUTER_API_KEY });
 import {
   CoreMessage,
   // Import CoreMessage for the simplified history type
@@ -26,14 +28,21 @@ async function getMorpheusSearchRawStream(
     `[${requestId}] Morpheus-Search: Setting up streamText. Original message count: ${originalMessages.length}`
   );
 
+  // Guard: MCP is required for morpheus-search mode.
+  if (!process.env.MATRIX_MCP_URL) {
+    throw new Error(
+      "Morpheus Search is unavailable: MATRIX_MCP_URL is not configured in this deployment."
+    );
+  }
+
   // Initialize MCP Client early
   const mcpClient = await createMCPClient({
     transport: {
       type: "sse",
-      url: process.env.MATRIX_MCP_URL || "",
+      url: process.env.MATRIX_MCP_URL,
       headers: {
-        Authorization: `Bearer ${process.env.MATRIX_MCP_API_KEY}`,
-        "x-api-key": process.env.MATRIX_MCP_API_KEY || "",
+        Authorization: `Bearer ${process.env.MATRIX_MCP_API_KEY ?? ""}`,
+        "x-api-key": process.env.MATRIX_MCP_API_KEY ?? "",
       },
     },
   });
@@ -53,14 +62,13 @@ async function getMorpheusSearchRawStream(
     );
     // --- End Filter ---
 
-    // Define Google models
-    const model = google("gemini-2.5-flash-preview-04-17", {
-      useSearchGrounding: false,
-    });
+    // Define models via OpenRouter
+    // Note: useSearchGrounding was a Google-native option; OpenRouter routes to the
+    // same model but without provider-level grounding. NeoSearch falls back to
+    // standard text generation (web search context is provided via the tool's prompt).
+    const model = openrouter("google/gemini-2.5-flash-preview-04-17");
 
-    const searchEnabledModel = google("gemini-2.5-flash-preview-04-17", {
-      useSearchGrounding: true,
-    });
+    const searchEnabledModel = openrouter("google/gemini-2.5-flash-preview-04-17");
 
     // Load specific Morpheus tools via MCP
     const tools = await mcpClient.tools({
@@ -135,8 +143,6 @@ async function getMorpheusSearchRawStream(
               });
 
               const text = searchResponse.text;
-              const metadata = searchResponse.providerMetadata;
-              const googleMetadata = metadata?.google;
 
               console.log(
                 `[${neoSearchRequestId}] NeoSearch successful for query:`,
@@ -144,7 +150,7 @@ async function getMorpheusSearchRawStream(
               );
               return {
                 searchResults: text,
-                sources: googleMetadata?.sources || [],
+                sources: [],
                 metadata: {
                   searchQuery,
                   timestamp: new Date().toISOString(),
