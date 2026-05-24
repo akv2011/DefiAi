@@ -211,9 +211,9 @@ export const SwapBridgeWidget = ({
   }, [widgetEvents, onRouteExecutionCompleted, onRouteExecutionFailed]);
   return (
     <LiFiWidget
-      integrator="matrix"
+      integrator="defi-ai"
       config={{
-        integrator: "matrix",
+        integrator: "defi-ai",
         theme: {
           container: {
             border: "1px solid rgb(234, 234, 234)",

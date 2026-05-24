@@ -122,7 +122,7 @@ export function useHyperliquidClient(): Omit<
       try {
         await walletClientHL.approveAgent({
           agentAddress: newAgentAddress,
-          agentName: "Matrix",
+          agentName: "DeFi AI",
         });
         console.log("New agent approved successfully.");
         // Return the newly created and approved agent client

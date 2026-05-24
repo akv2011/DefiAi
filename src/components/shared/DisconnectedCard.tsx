@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ConnectKitButton } from "connectkit";
 import { RefreshCw, Shield, Sparkles } from "lucide-react";
 
+import { BrandMark } from "./BrandMark";
+
 export function ChatDisconnectedCard() {
   return (
     <div className="flex flex-col items-center justify-center h-full p-6 bg-white dark:bg-neutral-950 backdrop-blur-md rounded-lg border border-primary/30">
@@ -77,41 +79,19 @@ export function DisconnectedCard() {
             <div className="flex justify-center mb-6 sm:mb-8 relative">
               <div className="relative transition-all duration-500 group">
                 <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-                  <svg
-                    width="100%"
-                    height="100%"
-                    viewBox="0 0 3001 3001"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="transition-all duration-500"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M1230.1 2093.81C1198.92 2094.88 1169.41 2079.74 1152.11 2053.79L904.827 1682.86H588.99V1502.86H952.993C983.085 1502.86 1011.19 1517.9 1027.88 1542.93L1221.1 1832.77L1696.86 1000.2C1713.33 971.378 1744.32 953.962 1777.5 954.883C1810.68 955.804 1840.66 974.912 1855.5 1004.6L2104.63 1502.86H2413.01V1682.86H2049.01C2014.92 1682.86 1983.76 1663.6 1968.51 1633.11L1769.71 1235.51L1305.14 2048.51C1289.66 2075.6 1261.27 2092.74 1230.1 2093.81Z"
-                      fill="var(--color-primary, #47D8A3)"
-                    />
-                    <path
-                      d="M449.641 2229.23H173.239V771.114H449.641V626.904H0.989014V2373.44H449.641V2229.23Z"
-                      fill="var(--color-primary, #47D8A3)"
-                    />
-                    <path
-                      d="M2552.35 2229.23H2828.75V771.111H2552.35V626.902H3001V2373.44H2552.35V2229.23Z"
-                      fill="var(--color-primary, #47D8A3)"
-                    />
-                  </svg>
+                  <BrandMark className="text-emerald-400" size={56} />
                 </div>
               </div>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-snug relative z-10 tracking-tight">
-              Matrix Gateway
+              DeFi AI Gateway
             </h1>
 
             <div className="space-y-4 sm:space-y-5 md:space-y-7 max-w-xl mx-auto">
               <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-100 leading-relaxed relative z-10 font-medium">
                 Connect your Wallet to access the Terminal. Sign in via
-                Signature to unlock the Matrix.
+                Signature to unlock DeFi AI.
               </p>
 
               <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-3 py-2">
@@ -153,7 +133,7 @@ export function DisconnectedCard() {
               </ConnectKitButton.Custom>
 
               <Link
-                href="https://enter.thematrix.app/"
+                href="/"
                 className="w-full sm:w-auto text-center text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white border border-gray-300 dark:border-gray-700 cursor-pointer
                 hover:bg-gray-100/50 dark:hover:bg-black/60 py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center relative z-50"
               >

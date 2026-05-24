@@ -8,7 +8,7 @@ export const getStripe = () => {
   if (!_stripe && process.env.STRIPE_SECRET_KEY) {
     _stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       appInfo: {
-        name: "Matrix Terminal",
+        name: "DeFi AI Terminal",
         version: "1.0.0",
       },
     });

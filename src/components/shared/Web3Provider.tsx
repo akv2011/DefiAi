@@ -80,8 +80,8 @@ const config = createConfig(
     walletConnectProjectId,
 
     // Application information
-    appName: "The Matrix",
-    appDescription: "Matrix Terminal",
+    appName: "DeFi AI",
+    appDescription: "DeFi AI Terminal",
     appUrl: "https://thematrix.app",
     appIcon: "https://thematrix.app/logo.png",
   })

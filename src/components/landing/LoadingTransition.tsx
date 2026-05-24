@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 
-import Image from "next/image";
-
 import { useAccount } from "wagmi";
+
+import { BrandMark } from "@/components/shared/BrandMark";
 
 const LoadingTransition: React.FC<{
   children: React.ReactNode;
@@ -25,15 +25,8 @@ const LoadingTransition: React.FC<{
   if (!isReady) {
     return (
       <div className="fixed inset-0 bg-black z-50 flex items-center justify-center transition-opacity duration-500 ease-in-out">
-        <div className="relative w-60 h-60 animate-pulse">
-          <Image
-            src="/logo_with_outline.png"
-            alt="Matrix Logo"
-            fill
-            sizes="(max-width: 240px) 100vw, 240px"
-            priority
-            className="opacity-50 object-contain"
-          />
+        <div className="relative w-60 h-60 animate-pulse flex items-center justify-center">
+          <BrandMark size={120} className="text-emerald-400 opacity-50" />
         </div>
       </div>
     );

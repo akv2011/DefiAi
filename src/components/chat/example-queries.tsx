@@ -143,10 +143,10 @@ export function ExampleQueries({
           <DialogContent className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border border-gray-200 dark:border-gray-800 p-0 rounded-xl w-[85vw] max-w-[500px] max-h-[85vh] overflow-auto">
             <div className="p-3 sm:p-4">
               <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-1">
-                Matrix Terminal Modes
+                DeFi AI Modes
               </h2>
               <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-4">
-                Choose how you want to interact with the Matrix
+                Choose how you want to interact with DeFi AI
               </p>
 
               <div className="grid grid-cols-1 gap-3 sm:gap-4">

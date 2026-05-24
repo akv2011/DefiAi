@@ -186,7 +186,7 @@ export const SubscriptionTab: React.FC<SubscriptionTabProps> = ({
       <CardHeader>
         <CardTitle>Subscription Settings</CardTitle>
         <CardDescription>
-          Manage your Matrix Terminal subscription
+          Manage your DeFi AI subscription
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

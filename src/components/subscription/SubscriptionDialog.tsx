@@ -190,7 +190,7 @@ export const SubscriptionDialog: React.FC<SubscriptionDialogProps> = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-xl">
             <Crown className="h-5 w-5 text-amber-500" />
-            Upgrade to Matrix Premium
+            Upgrade to DeFi AI Premium
           </DialogTitle>
           <DialogDescription>
             Unlock unlimited requests, premium data sources, and exclusive

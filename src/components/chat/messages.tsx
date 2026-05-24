@@ -564,7 +564,7 @@ function MessagesComponent() {
                       <div className="flex items-center gap-2 mb-1.5">
                         <Image
                           src="/logo/icon_white.svg"
-                          alt="Matrix Icon"
+                          alt="DeFi AI Icon"
                           width={24}
                           height={24}
                           className="invert dark:invert-0 shrink-0"
@@ -637,7 +637,7 @@ function MessagesComponent() {
               <div className="flex items-center gap-2 mb-1">
                 <Image
                   src="/logo/icon_white.svg"
-                  alt="Matrix Icon"
+                  alt="DeFi AI Icon"
                   width={24}
                   height={24}
                   className="invert dark:invert-0 shrink-0"

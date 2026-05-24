@@ -82,7 +82,7 @@ const TIER_DATA: TierData[] = [
     ],
   },
   {
-    title: "Matrix V2",
+    title: "DeFi AI Pro",
     icon: "crown",
     isPremium: true,
     services: [
@@ -169,7 +169,7 @@ export const TierAccess: React.FC<TierAccessProps> = ({ className = "" }) => {
               </div>
               <h3 className="text-xs font-medium text-gray-900 dark:text-white uppercase transition-all duration-300 group-hover/tier:translate-x-0.5 group-hover/tier:text-primary">
                 {tier.title}
-                {tier.title === "Matrix V2" && (
+                {tier.title === "DeFi AI Pro" && (
                   <span className="ml-1 text-[10px] text-primary inline-flex items-center">
                     <Sparkles className="h-2.5 w-2.5 mr-0.5 animate-pulse" />
                     (coming soon)

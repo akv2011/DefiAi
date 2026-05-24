@@ -34,7 +34,7 @@ export function ToolsList() {
           No tools activated yet.
         </h3>
         <p className="text-gray-600 dark:text-gray-400 max-w-xs mb-4">
-          Prompt Matrix to start. Tools will appear here when activated. Be
+          Send a message to start. Tools will appear here when activated. Be
           safe.
         </p>
         <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3 max-w-xs">

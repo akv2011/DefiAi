@@ -6,7 +6,7 @@ const loadingMessages = [
   "Accessing the divine knowledge base...",
   "Channeling cosmic wisdom...",
   "Consulting with digital oracles...",
-  "Decoding the matrix of possibilities...",
+  "Analyzing DeFi opportunities...",
   "Synchronizing with universal datasets...",
   "Materializing optimal solutions...",
   "Analyzing quantum probabilities...",
@@ -23,7 +23,7 @@ const progressMessages = [
   "Amplifying signal clarity...",
   "Focusing dimensional lens...",
   "Maximizing insight potential...",
-  "Stabilizing reality matrix...",
+  "Stabilizing market data...",
   "Perfecting output quality...",
   "Fine-tuning cosmic frequencies...",
 ];

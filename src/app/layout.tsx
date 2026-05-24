@@ -19,8 +19,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Matrix - The Matrix",
-  description: "Enter The Matrix",
+  title: "DeFi AI",
+  description:
+    "AI-powered DeFi terminal: wallet, chat, swap, stake, borrow.",
 };
 
 export default function RootLayout({
