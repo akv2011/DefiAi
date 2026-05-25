@@ -20,7 +20,7 @@ async function buffer(readable: ReadableStream) {
 export async function POST(req: NextRequest) {
   // Verify all required keys are present
   if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === "sk_test_dummy") {
-    console.warn("STRIPE_SECRET_KEY is not configured — Stripe is disabled in this deployment.");
+    console.warn("STRIPE_SECRET_KEY is not configured, Stripe is disabled in this deployment.");
     return NextResponse.json(
       {
         error: "Stripe is not configured in this deployment.",
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
   }
 
   if (!process.env.STRIPE_WEBHOOK_SECRET) {
-    console.warn("STRIPE_WEBHOOK_SECRET is not configured — Stripe webhooks are disabled in this deployment.");
+    console.warn("STRIPE_WEBHOOK_SECRET is not configured, Stripe webhooks are disabled in this deployment.");
     return NextResponse.json(
       {
         error: "Stripe is not configured in this deployment.",

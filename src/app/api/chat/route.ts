@@ -498,7 +498,7 @@ export async function POST(req: Request) {
       }
     } else {
       console.log(
-        `[${requestId}] MATRIX_MCP_URL not set — skipping MCP tool registration.`
+        `[${requestId}] MATRIX_MCP_URL not set, skipping MCP tool registration.`
       );
     }
 
